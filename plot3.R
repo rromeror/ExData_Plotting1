@@ -1,0 +1,10 @@
+buffer <- read.table("household_power_consumption.txt",sep=";",header = TRUE,stringsAsFactors = FALSE)
+buffer1<- buffer[buffer$Date %in% c("1/2/2007","2/2/2007"),c("Sub_metering_1","Sub_metering_2","Sub_metering_3")]
+png(filename = "plot3.png", width = 480, height = 480)
+plot(buffer1$Sub_metering_1,type ="n",mar=c(2,4,1,1),main = "",ylab="Energy sub metering",xlab="",xaxt="n")
+points(buffer1$Sub_metering_1,col="black",ylab="",xlab="",type ="l")
+points(buffer1$Sub_metering_2,col="red",ylab="",xlab="",type ="l")
+points(buffer1$Sub_metering_3,col="blue",ylab="",xlab="",type ="l")
+axis(1, at=c(1,1440,2880), lab=c("Thu","Fri","Sat"))
+legend("topright", legend = c("Sub_metering_1","Sub_metering_2","Sub_metering_3"), col=c("black","red","blue"), lty=1)
+dev.off()
